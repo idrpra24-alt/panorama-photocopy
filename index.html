@@ -47,13 +47,7 @@
   header.top:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--red)}
   .brand{display:flex;flex-direction:column;gap:3px;min-width:0;align-items:flex-start}
   .brand .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#9FB0D4;padding-left:5px}
-  #storeName{
-    font-family:var(--disp);font-weight:700;font-size:22px;line-height:1.1;
-    background:transparent;border:none;color:#fff;padding:2px 5px;border-radius:6px;
-    outline:none;min-width:120px;max-width:100%;
-  }
-  #storeName:hover{background:rgba(255,255,255,.08)}
-  #storeName:focus{background:rgba(255,255,255,.14)}
+  #storeName{font-family:var(--disp);font-weight:700;font-size:22px;line-height:1.1;color:#fff;padding:2px 5px}
 
   /* School folders */
   .schoolbar{
@@ -250,7 +244,7 @@
   <header class="top">
     <div class="brand">
       <span class="eyebrow">Buku Kas Digital</span>
-      <input id="storeName" value="PANORAMA PHOTOCOPY" spellcheck="false" aria-label="Nama toko">
+      <div id="storeName" style="font-family:var(--disp);font-weight:700;font-size:22px;line-height:1.1;color:#fff;padding:2px 5px">PANORAMA PHOTOCOPY</div>
     </div>
   </header>
 
@@ -471,10 +465,9 @@
 
   /* ---------- init ---------- */
   (async function init(){
-    // settings
-    var s = await sGet("settings");
-    if(s){ try{ var o=JSON.parse(s); if(o.storeName) state.storeName=o.storeName; }catch(e){} }
-    $("storeName").value = state.storeName;
+    // nama toko permanen
+    $("storeName").value = "PANORAMA PHOTOCOPY";
+    state.storeName = "PANORAMA PHOTOCOPY";
 
     // products
     // (tidak ada lagi daftar produk — hanya kategori)
@@ -834,13 +827,6 @@
     $("nextMonth").addEventListener("click",function(){ shiftMonth(1); });
     $("monthPick").addEventListener("change",function(){ if($("monthPick").value){ state.month=$("monthPick").value; renderMonthly(); } });
     $("csvMonthBtn").addEventListener("click",exportMonthCSV);
-
-    var sn=$("storeName");
-    sn.addEventListener("blur",function(){
-      var v=sn.value.trim()||"Toko ATK"; sn.value=v; state.storeName=v;
-      sSet("settings", JSON.stringify({storeName:v}));
-    });
-    sn.addEventListener("keydown",function(e){ if(e.key==="Enter"){ e.preventDefault(); sn.blur(); }});
 
     // modal
     $("modalOk").addEventListener("click",function(){
