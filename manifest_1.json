@@ -1,0 +1,24 @@
+{
+  "name": "Panorama Photocopy",
+  "short_name": "Panorama",
+  "description": "Buku Kas Digital Panorama Photocopy",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#16233F",
+  "theme_color": "#16233F",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
